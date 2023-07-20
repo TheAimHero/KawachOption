@@ -1,0 +1,20 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+  gap: 2%;
+  align-items: center;
+  border-bottom: 3px solid black;
+}
+
+.navItem {
+  cursor: default;
+  padding: 10px;
+}
+
+.active {
+  border: 2px solid black;
+  border-radius: 5px;
+}
