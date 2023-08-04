@@ -1,0 +1,9 @@
+.img {
+  float: 'right';
+  position: 'relative';
+  overflow: 'hidden';
+}
+
+.imgBlurIp {
+  margin-top: '20px';
+}

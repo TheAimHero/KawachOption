@@ -1,0 +1,23 @@
+.inputDiv {
+  margin-top: 30px;
+  width: 70%;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0 0;
+}
+
+.input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  border-radius: 10px;
+}

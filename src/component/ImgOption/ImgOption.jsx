@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+/* eslint-disable no-undef */
+import React, { useState, Fragment } from 'react';
 
-const style = {
-  width: '70%',
-  display: 'flex',
-  border: '2px solid black',
-  fontWeight: 'normal',
-  margin: '20px 20px',
-  justifyContent: 'space-between',
-  padding: '20px 20px',
-};
-
-const imgDiv = {
-  float: 'right',
-  position: 'relative',
-  overflow: 'hidden',
-};
+import FieldSet from '../utils/FieldSet';
+import Input from '../utils/Input/Input';
+import styles from './ImageOption.module.css';
 
 const imgArr = [64, 237, 219, 250, 325, 342];
 
-export default function ImgOption() {
-  const [blurAmt, setBlurAmt] = useState(7.5);
+export default function ImgOption(props) {
+  const [blurAmt, setBlurAmt] = useState(props.blurAmt);
+  const [minDim, setMinDim] = useState(props.minDim);
+  const [batchSize, setBatchSize] = useState(props.batchSize);
+
   const img = imgArr.map((num, index) => (
     <img
       key={index}
@@ -29,22 +21,57 @@ export default function ImgOption() {
     />
   ));
 
-  function onChange(e) {
+  function onChangeBlurAmt(e) {
     console.log(e.target.value);
     setBlurAmt(+e.target.value);
+    // @note: change when developing
+    chrome.storage.sync.set({ blurAmt: e.target.value });
+  }
+
+  function onChangeDim(e) {
+    console.log(e.target.value);
+    const value = +e.target.value;
+    setMinDim(isNaN(value) || 0 ? '' : value);
+    // @note: change when developing
+    chrome.storage.sync.set({ minDim: e.target.value });
+  }
+
+  function onChangeBatchSize(e) {
+    console.log(e.target.value);
+    setBatchSize(+e.target.value);
+    // @note: change when developing
+    chrome.storage.sync.set({ batchSize: e.target.value });
   }
 
   return (
-    <fieldset style={style}>
-      <legend>Image Blur Amount</legend>
-      <input
-        type="range"
-        min={0}
-        max={15}
-        onChange={onChange}
-        defaultValue={blurAmt}
+    <Fragment>
+      <FieldSet title={'Blur Amount'}>
+        <input
+          type="range"
+          className={styles.imgBlurIp}
+          min={0}
+          max={15}
+          onChange={onChangeBlurAmt}
+          defaultValue={blurAmt}
+        />
+        <div className={styles.img}>{img}</div>
+      </FieldSet>
+      <Input
+        onChange={onChangeDim}
+        defaultValue={minDim}
+        title={'Minimum Size of Image to Blur'}
+        type={'number'}
+        inputMode={'numeric'}
+        min={50}
       />
-      <div style={imgDiv}>{img}</div>
-    </fieldset>
+      <Input
+        onChange={onChangeBatchSize}
+        title={'Image Process Batch Size'}
+        type={'number'}
+        defaultValue={batchSize}
+        inputMode={'numeric'}
+        min={1}
+      />
+    </Fragment>
   );
 }

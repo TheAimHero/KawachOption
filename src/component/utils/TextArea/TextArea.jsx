@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 
 import styles from './TextArea.module.css';
 
-const fieldStyle = {
-  width: '70%',
-  border: '2px solid black',
-  fontWeight: 'normal',
-  margin: '20px 20px',
-};
-
 const style = {
   width: '100%',
   border: 'none',
@@ -27,7 +20,7 @@ TextArea.propTypes = {
 };
 
 export default function TextArea(props) {
-  const { censorArr, onChange, title } = props;
+  const { censorArr, onChange } = props;
   const [textArea, setTextArea] = useState(censorArr.join(' '));
 
   useEffect(() => {
@@ -36,22 +29,18 @@ export default function TextArea(props) {
     }, 300);
 
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [textArea]);
+  }, [onChange, textArea]);
 
   function onChangeWord(e) {
     setTextArea(e.target.value);
   }
 
   return (
-    <fieldset style={fieldStyle}>
-      <legend>{title}</legend>
-      <textarea
-        onChange={onChangeWord}
-        style={style}
-        className={styles.censorText}
-        value={textArea}
-      ></textarea>
-    </fieldset>
+    <textarea
+      onChange={onChangeWord}
+      style={style}
+      className={styles.censorText}
+      value={textArea}
+    ></textarea>
   );
 }
