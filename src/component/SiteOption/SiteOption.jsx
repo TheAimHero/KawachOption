@@ -9,7 +9,7 @@ export default function SiteOption(props) {
 
   const onChange = useCallback((censorSiteArr) => {
     setCensorSite(censorSiteArr);
-    // @note: change when developing
+    // // @note: change when developing
     chrome.storage.sync.set({ censorSite: censorSiteArr });
     console.log(censorSiteArr);
   }, []);

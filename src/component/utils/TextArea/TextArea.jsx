@@ -8,7 +8,7 @@ const style = {
   border: 'none',
   fontSize: '1.2rem',
   cursor: 'text',
-  backgroundColor: 'grey',
+  backgroundColor: 'transparent',
   warp: 'hard',
   height: '200px',
 };

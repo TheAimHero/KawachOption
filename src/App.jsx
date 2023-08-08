@@ -30,11 +30,15 @@ function App() {
       <Fragment>
         <Navbar active={active} setActive={setActive} />
         <Tabs active={active}>
-          {active === 'txt' && <TextOption censorChar={data.censorChar} censorWords={data.censorWords} />}
+          {active === 'txt' && (
+            <TextOption
+              censorChar={data.censorChar}
+              censorWords={data.censorWords}
+            />
+          )}
           {active === 'img' && (
             <ImgOption
               minDim={data.minDim}
-              batchSize={data.batchSize}
               blurAmt={data.blurAmt}
             />
           )}
