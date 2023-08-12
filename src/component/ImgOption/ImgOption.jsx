@@ -13,10 +13,10 @@ export default function ImgOption(props) {
   // const [batchSize, setBatchSize] = useState(props.batchSize);
 
   const img = imgArr.map((num, index) => (
-    <img styles={{overflow: 'cutofg'}}
+    <img
       key={index}
       src={`https://picsum.photos/id/${num}/100/150`}
-      style={{ filter: 'blur(' + blurAmt + 'px' }}
+      style={{ filter: 'blur(' + blurAmt + 'px', overflow: 'clip' }}
       alt="Blur Preview"
     />
   ));
@@ -25,7 +25,7 @@ export default function ImgOption(props) {
     console.log(e.target.value);
     setBlurAmt(+e.target.value);
     // @note: change when developing
-    // dhrome.storage.sync.set({ blurAmt: e.target.value });
+    dhrome.storage.sync.set({ blurAmt: e.target.value });
   }
 
   function onChangeDim(e) {

@@ -39,6 +39,7 @@ export default function TextArea(props) {
     <textarea
       onChange={onChangeWord}
       style={style}
+      spellCheck="false"
       className={styles.censorText}
       value={textArea}
     ></textarea>
